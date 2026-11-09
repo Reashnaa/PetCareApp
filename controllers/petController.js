@@ -1,24 +1,22 @@
-const petModel = require('../models/petModel');
+const Pet = require('../models/petModel');
 
-// Add Pet Form
-function newPetForm(req, res) {
+function showNewPet(req, res) {
   res.render('newPet', { session: req.session });
 }
 
-// Handle Add Pet Submission
 function createPet(req, res) {
   const { pet_name, species, breed, age } = req.body;
   let petImage;
 
   if (req.file) {
-    petImage = req.file.filename; // use uploaded filename
+    petImage = req.file.filename;
   } else {
     petImage = null;
   }
 
   const ownerId = req.session.user.id;
 
-  petModel.createPet(ownerId, pet_name, species, breed, age, petImage, (err) => {
+  Pet.createPet(ownerId, pet_name, species, breed, age, petImage, (err) => {
     if (err) {
       console.error(err);
       return res.send('Failed to add pet.');
@@ -27,4 +25,4 @@ function createPet(req, res) {
   });
 }
 
-module.exports = { newPetForm, createPet };
+module.exports = { showNewPet, createPet };
