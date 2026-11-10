@@ -24,5 +24,6 @@ app.use('/', require('./routes/adminRoutes'));
 app.use('/', require('./routes/petRoutes'));
 app.use('/', require('./routes/journalRoutes'));
 app.use('/', require('./routes/paymentRoutes'));
+app.use('/', require('./routes/serviceRoutes'));
 
 app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));
